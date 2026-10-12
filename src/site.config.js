@@ -14,20 +14,23 @@ export const company = {
   designedBy: 'Your Studio',
 };
 
+// All photos are served from /public/images (prefixed with the site base path).
+const img = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+
 // All photos are served from /public/images. Replace the files (or the
 // paths) to change them. `alt` text is used for accessibility.
 export const images = {
   hero: [
-    { src: '/images/hero-1.jpg', alt: 'Bird in flight' },
-    { src: '/images/hero-2.jpg', alt: 'Bird perched on a branch' },
-    { src: '/images/hero-3.jpg', alt: 'Flock of birds over the sky' },
+    { src: img('hero-1.jpg'), alt: 'Bird in flight' },
+    { src: img('hero-2.jpg'), alt: 'Bird perched on a branch' },
+    { src: img('hero-3.jpg'), alt: 'Flock of birds over the sky' },
   ],
-  about: { src: '/images/about.jpg', alt: 'Pair of birds on a wire' },
-  pageBanner: { src: '/images/banner.jpg', alt: 'Bird landscape' },
+  about: { src: img('about.jpg'), alt: 'Pair of birds on a wire' },
+  pageBanner: { src: img('banner.jpg'), alt: 'Bird landscape' },
   services: {
-    installations: { src: '/images/service-installations.jpg', alt: 'Bird building a nest' },
-    maintenance: { src: '/images/service-maintenance.jpg', alt: 'Bird preening its feathers' },
-    repairs: { src: '/images/service-repairs.jpg', alt: 'Woodpecker on a tree trunk' },
+    installations: { src: img('service-installations.jpg'), alt: 'Bird building a nest' },
+    maintenance: { src: img('service-maintenance.jpg'), alt: 'Bird preening its feathers' },
+    repairs: { src: img('service-repairs.jpg'), alt: 'Woodpecker on a tree trunk' },
   },
 };
 

@@ -35,7 +35,13 @@ npm run preview  # serve the build
 5. **Contact form** → wire up a backend/service (Formspree, EmailJS…) at the `TODO` in `src/pages/Contact.jsx`
 6. **Legal pages** → replace the placeholder copy in `src/pages/Legal.jsx` with text reviewed by the client's legal advisor
 
-## Deployment note
+## Deployment
 
-The site uses client-side routing. Configure your host to serve `index.html` for unknown paths
-(Netlify `_redirects`: `/* /index.html 200`; Vercel does this automatically for Vite).
+**GitHub Pages:** `.github/workflows/deploy.yml` builds and deploys on every push to `main`
+(or the current default branch). One-time setup: *Settings → Pages → Build and deployment →
+Source: GitHub Actions*. The site is served at `https://<user>.github.io/<repo>/`; the workflow
+sets the base path automatically and copies `index.html` to `404.html` so deep links work.
+
+**Other hosts:** run `npm run build` and upload `dist/`. Configure the host to serve `index.html`
+for unknown paths (Netlify `_redirects`: `/* /index.html 200`; Vercel does this automatically).
+To deploy under a sub-path, build with `BASE_PATH=/sub-path/ npm run build`.
