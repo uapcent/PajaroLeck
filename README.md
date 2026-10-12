@@ -28,10 +28,9 @@ npm run preview  # serve the build
 1. **Text, contact details, menu, services** → `src/site.config.js`
 2. **Colors, fonts, radius** → CSS variables at the top of `src/styles.css`
 3. **Logo** → `src/components/Logo.jsx` (replace the SVG with an `<img>` of the client logo)
-4. **Photos** → put files in `public/images/` using the names listed in `src/site.config.js`
-   (`hero-1.jpg`, `hero-2.jpg`, `hero-3.jpg`, `about.jpg`, `banner.jpg`,
-   `service-installations.jpg`, `service-maintenance.jpg`, `service-repairs.jpg`).
-   Missing photos fall back to a brand-colored gradient.
+4. **Photos** → `images` in `src/site.config.js`. Bird photos are loaded by URL from
+   [Pexels](https://www.pexels.com/license/) (free to use). Swap a Pexels photo ID, or replace
+   any `src` with another URL or a file in `public/`. Photos that fail to load fall back to brand colors.
 5. **Contact form** → wire up a backend/service (Formspree, EmailJS…) at the `TODO` in `src/pages/Contact.jsx`
 6. **Legal pages** → replace the placeholder copy in `src/pages/Legal.jsx` with text reviewed by the client's legal advisor
 

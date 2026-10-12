@@ -14,23 +14,24 @@ export const company = {
   designedBy: 'Your Studio',
 };
 
-// All photos are served from /public/images (prefixed with the site base path).
-const img = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+// Photos are loaded from Pexels (free to use, no attribution required:
+// https://www.pexels.com/license/). To change one, open a photo on pexels.com,
+// take the number at the end of its URL and pass it to pexels().
+const pexels = (id, width = 1600) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
 
-// All photos are served from /public/images. Replace the files (or the
-// paths) to change them. `alt` text is used for accessibility.
 export const images = {
   hero: [
-    { src: img('hero-1.jpg'), alt: 'Bird in flight' },
-    { src: img('hero-2.jpg'), alt: 'Bird perched on a branch' },
-    { src: img('hero-3.jpg'), alt: 'Flock of birds over the sky' },
+    { src: pexels(12179114, 1920), alt: 'Grey heron in flight' }, // Phil Mitchell
+    { src: pexels(721993, 1920), alt: 'Flock of birds flying at dusk' }, // Irina Iriser
+    { src: pexels(31568289, 1920), alt: 'Bird in flight with open wings' }, // Bitnik Gao
   ],
-  about: { src: img('about.jpg'), alt: 'Pair of birds on a wire' },
-  pageBanner: { src: img('banner.jpg'), alt: 'Bird landscape' },
+  about: { src: pexels(4509635, 1200), alt: 'Two colorful birds perched on a branch' }, // Rajukhan Pathan
+  pageBanner: { src: pexels(2867904, 1920), alt: 'Flock of birds in a clear sky' }, // Helena I
   services: {
-    installations: { src: img('service-installations.jpg'), alt: 'Bird building a nest' },
-    maintenance: { src: img('service-maintenance.jpg'), alt: 'Bird preening its feathers' },
-    repairs: { src: img('service-repairs.jpg'), alt: 'Woodpecker on a tree trunk' },
+    installations: { src: pexels(255435, 1200), alt: 'Kingfisher perched on a branch' }, // Pixabay
+    maintenance: { src: pexels(11026003, 1200), alt: 'Chaffinch perched on a branch' }, // Phil Mitchell
+    repairs: { src: pexels(2167039, 1200), alt: 'Blackbird perched on a branch' },
   },
 };
 
