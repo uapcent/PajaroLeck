@@ -1,11 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import '@fontsource/lexend/400.css';
-import '@fontsource/lexend/600.css';
-import '@fontsource/bricolage-grotesque/600.css';
-import '@fontsource/bricolage-grotesque/700.css';
-import '@fontsource/fraunces/600.css';
 import './styles.css';
 import App from './App.jsx';
 

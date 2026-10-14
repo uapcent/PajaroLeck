@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { templates } from '../templates/index.js';
-import { ChevronDown, Grid } from './Icons.jsx';
+import { ChevronDown } from './Icons.jsx';
 
-// Small floating dropdown for showing clients the three demos.
+// Thin strip above every demo: tells the prospect it's an example and lets them switch.
 // Hide it in client builds with VITE_DEMO_SWITCHER=off.
 export default function DemoSwitcher() {
   const [open, setOpen] = useState(false);
@@ -26,22 +26,25 @@ export default function DemoSwitcher() {
   }, [open]);
 
   return (
-    <div className="demo-switcher" ref={ref}>
-      {open && (
-        <ul className="demo-switcher__menu">
-          {templates.map((t) => (
-            <li key={t.id}>
-              <Link to={t.base || '/'} className={t === current ? 'is-current' : ''} aria-current={t === current ? 'page' : undefined}>
-                <strong>{t.demoLabel}</strong>
-                <span>{t.demoDescription}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-      <button className="demo-switcher__toggle" aria-expanded={open} aria-haspopup="true" onClick={() => setOpen((o) => !o)}>
-        <Grid /> <span>Demo: {current.demoLabel}</span> <ChevronDown className={open ? 'is-flipped' : ''} />
-      </button>
+    <div className="demo-bar">
+      <span className="demo-bar__text">Web de ejemplo</span>
+      <div className="demo-bar__menu" ref={ref}>
+        <button className="demo-bar__toggle" aria-expanded={open} aria-haspopup="true" onClick={() => setOpen((o) => !o)}>
+          Ver otro ejemplo: <strong>{current.demoLabel}</strong> <ChevronDown className={open ? 'is-flipped' : ''} />
+        </button>
+        {open && (
+          <ul className="demo-bar__list">
+            {templates.map((t) => (
+              <li key={t.id}>
+                <Link to={t.base || '/'} className={t === current ? 'is-current' : ''} aria-current={t === current ? 'page' : undefined}>
+                  <strong>{t.demoLabel}</strong>
+                  <span>{t.demoDescription}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
