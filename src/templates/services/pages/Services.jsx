@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import PageBanner from '../components/PageBanner.jsx';
-import Eyebrow from '../components/Eyebrow.jsx';
-import Photo from '../components/Photo.jsx';
-import Reveal from '../components/Reveal.jsx';
-import { Check, ArrowRight } from '../components/Icons.jsx';
-import { serviceDetails } from '../site.config.js';
+import PageBanner from '../../../components/PageBanner.jsx';
+import Eyebrow from '../../../components/Eyebrow.jsx';
+import Photo from '../../../components/Photo.jsx';
+import Reveal from '../../../components/Reveal.jsx';
+import { Check, ArrowRight } from '../../../components/Icons.jsx';
+import site, { serviceDetails } from '../config.js';
 
 export default function Services() {
   return (
@@ -27,7 +27,7 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact" className="btn btn--primary">
+              <Link to={site.headerCta.to} className="btn btn--primary">
                 Request a quote <ArrowRight width={16} height={16} />
               </Link>
             </div>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { nav } from '../site.config.js';
+import { useSite } from '../lib/site.js';
 import Logo from './Logo.jsx';
 import { ChevronDown, Menu, Close } from './Icons.jsx';
 
 export default function Header() {
+  const { nav, home, headerCta } = useSite();
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
 
@@ -16,7 +17,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__inner">
-        <Link to="/" className="header__logo" aria-label="Home">
+        <Link to={home} className="header__logo" aria-label="Home">
           <Logo />
         </Link>
 
@@ -52,8 +53,8 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-          <Link to="/contact" className="btn btn--primary header__cta">
-            Contact
+          <Link to={headerCta.to} className="btn btn--primary header__cta">
+            {headerCta.label}
           </Link>
         </div>
         <div className={`header__overlay ${open ? 'is-open' : ''}`} onClick={() => setOpen(false)} />

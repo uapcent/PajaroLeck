@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { hero, images } from '../site.config.js';
+import { useSite } from '../lib/site.js';
 import Eyebrow from './Eyebrow.jsx';
 import Reveal from './Reveal.jsx';
 import { ArrowRight } from './Icons.jsx';
@@ -8,6 +8,7 @@ import { ArrowRight } from './Icons.jsx';
 const SLIDE_MS = 5000;
 
 export default function Hero() {
+  const { hero, images } = useSite();
   const [active, setActive] = useState(0);
   const slides = images.hero;
 
@@ -35,9 +36,16 @@ export default function Hero() {
           <span className="hero__accent">{hero.titleAccent}</span>
         </Reveal>
         <p className="hero__text">{hero.text}</p>
-        <Link to={hero.cta.to} className="btn btn--light">
-          {hero.cta.label} <ArrowRight width={16} height={16} />
-        </Link>
+        <div className="hero__actions">
+          <Link to={hero.cta.to} className="btn btn--light">
+            {hero.cta.label} <ArrowRight width={16} height={16} />
+          </Link>
+          {hero.secondaryCta && (
+            <Link to={hero.secondaryCta.to} className="btn btn--outline-light">
+              {hero.secondaryCta.label}
+            </Link>
+          )}
+        </div>
       </div>
     </section>
   );

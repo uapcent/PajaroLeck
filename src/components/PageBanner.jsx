@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { images } from '../site.config.js';
+import { useSite } from '../lib/site.js';
 import Eyebrow from './Eyebrow.jsx';
 
 // Smaller hero used at the top of inner pages.
 export default function PageBanner({ eyebrow, title }) {
+  const { images, home } = useSite();
   return (
     <section className="banner" style={{ backgroundImage: `url(${images.pageBanner.src})` }}>
       <div className="hero__overlay" />
@@ -11,7 +12,7 @@ export default function PageBanner({ eyebrow, title }) {
         <Eyebrow light>{eyebrow}</Eyebrow>
         <h1 className="banner__title">{title}</h1>
         <p className="banner__crumbs">
-          <Link to="/">Home</Link> / <span>{title}</span>
+          <Link to={home}>Home</Link> / <span>{title}</span>
         </p>
       </div>
     </section>

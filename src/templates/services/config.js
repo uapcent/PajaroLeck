@@ -1,7 +1,13 @@
 // ---------------------------------------------------------------
+// Template 1 – Services / trades (installers, repairmen, consultants…)
 // Edit this file to rebrand the template for a new client.
 // Colors and fonts live in src/styles.css (:root variables).
 // ---------------------------------------------------------------
+import { pexels, withBase } from '../../lib/site.js';
+
+// URL prefix for this template ('' = site root).
+const base = '';
+const to = withBase(base);
 
 export const company = {
   name: 'PajaroLeck',
@@ -14,11 +20,11 @@ export const company = {
   designedBy: 'Your Studio',
 };
 
-// Photos are loaded from Pexels (free to use, no attribution required:
-// https://www.pexels.com/license/). To change one, open a photo on pexels.com,
-// take the number at the end of its URL and pass it to pexels().
-const pexels = (id, width = 1600) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
+// Floating click-to-chat button. Set to null to hide it.
+export const whatsapp = {
+  number: '+34 600 000 000',
+  message: `Hi ${company.name}, I'd like a quote for…`,
+};
 
 export const images = {
   hero: [
@@ -36,17 +42,17 @@ export const images = {
 };
 
 export const nav = [
-  { label: 'Home', to: '/' },
+  { label: 'Home', to: to('/') },
   {
     label: 'About us',
-    to: '/about',
+    to: to('/about'),
     children: [
-      { label: 'Residential & Commercial Installations', to: '/services#installations' },
-      { label: 'Civil Works & Industrial Installations', to: '/services#civil-works' },
-      { label: 'Industrial & Logistics Machinery', to: '/services#machinery' },
+      { label: 'Residential & Commercial Installations', to: to('/services#installations') },
+      { label: 'Civil Works & Industrial Installations', to: to('/services#civil-works') },
+      { label: 'Industrial & Logistics Machinery', to: to('/services#machinery') },
     ],
   },
-  { label: 'Services', to: '/services' },
+  { label: 'Services', to: to('/services') },
 ];
 
 export const hero = {
@@ -54,7 +60,7 @@ export const hero = {
   title: company.name,
   titleAccent: 'Technical Service & Installations',
   text: 'We are ready to make it happen, with guarantee and commitment.',
-  cta: { label: 'Contact us', to: '/contact' },
+  cta: { label: 'Contact us', to: to('/contact') },
 };
 
 export const about = {
@@ -69,9 +75,9 @@ export const about = {
 
 // Cards on the home page (style: "image" | "accent" | "dark")
 export const serviceCards = [
-  { title: 'Installations', style: 'image', image: images.services.installations, to: '/services#installations' },
-  { title: 'Maintenance', style: 'accent', to: '/services#civil-works' },
-  { title: 'Repairs', style: 'dark', to: '/services#machinery' },
+  { title: 'Installations', style: 'image', image: images.services.installations, to: to('/services#installations') },
+  { title: 'Maintenance', style: 'accent', to: to('/services#civil-works') },
+  { title: 'Repairs', style: 'dark', to: to('/services#machinery') },
 ];
 
 // Detailed sections on the Services page
@@ -100,10 +106,27 @@ export const serviceDetails = [
 ];
 
 export const footerLinks = [
-  { label: 'About us', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Contact', to: '/contact' },
-  { label: 'Legal notice', to: '/legal-notice' },
-  { label: 'Privacy policy', to: '/privacy-policy' },
-  { label: 'Cookie policy', to: '/cookie-policy' },
+  { label: 'About us', to: to('/about') },
+  { label: 'Services', to: to('/services') },
+  { label: 'Contact', to: to('/contact') },
+  { label: 'Legal notice', to: to('/legal-notice') },
+  { label: 'Privacy policy', to: to('/privacy-policy') },
+  { label: 'Cookie policy', to: to('/cookie-policy') },
 ];
+
+export default {
+  id: 'services',
+  demoLabel: 'Services',
+  demoDescription: 'Trades & repairs – services, contact form, WhatsApp button',
+  title: `${company.name} – Technical Service & Installations`,
+  base,
+  home: to('/'),
+  company,
+  images,
+  nav,
+  headerCta: { label: 'Contact', to: to('/contact') },
+  hero,
+  footerLinks,
+  whatsapp,
+  privacyPurpose: 'We process the personal data you provide through the contact form solely to answer your enquiry.',
+};

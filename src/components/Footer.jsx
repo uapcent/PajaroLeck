@@ -1,20 +1,21 @@
 import { Link } from 'react-router-dom';
-import { company, footerLinks } from '../site.config.js';
+import { useSite } from '../lib/site.js';
 import Logo from './Logo.jsx';
 import { MapPin, Mail, Phone } from './Icons.jsx';
 
 export default function Footer() {
+  const { company, home, footerLinks, footerLinksTitle = 'Our company' } = useSite();
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
-            <Link to="/" aria-label="Home">
+            <Link to={home} aria-label="Home">
               <Logo size="lg" light />
             </Link>
           </div>
           <div>
-            <h4 className="footer__title">Our company</h4>
+            <h4 className="footer__title">{footerLinksTitle}</h4>
             <ul className="footer__links">
               {footerLinks.map((l) => (
                 <li key={l.to}>

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { company, serviceCards } from '../site.config.js';
-import Eyebrow from './Eyebrow.jsx';
-import Reveal from './Reveal.jsx';
-import { ArrowRight, Bolt } from './Icons.jsx';
+import { company, serviceCards } from '../config.js';
+import Eyebrow from '../../../components/Eyebrow.jsx';
+import Reveal from '../../../components/Reveal.jsx';
+import { ArrowRight, Bolt } from '../../../components/Icons.jsx';
 
 export default function ServicesSection() {
   return (

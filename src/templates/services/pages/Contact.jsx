@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import PageBanner from '../components/PageBanner.jsx';
-import Eyebrow from '../components/Eyebrow.jsx';
-import { MapPin, Mail, Phone } from '../components/Icons.jsx';
-import { company } from '../site.config.js';
+import PageBanner from '../../../components/PageBanner.jsx';
+import PrivacyConsent from '../../../components/PrivacyConsent.jsx';
+import Field from '../../../components/Field.jsx';
+import Eyebrow from '../../../components/Eyebrow.jsx';
+import { MapPin, Mail, Phone, WhatsApp } from '../../../components/Icons.jsx';
+import { whatsappLink } from '../../../lib/site.js';
+import { company, whatsapp } from '../config.js';
 
 const empty = { name: '', email: '', phone: '', message: '', privacy: false };
 
@@ -54,6 +56,11 @@ export default function Contact() {
               <li><span className="contact__icon"><Mail /></span><a href={`mailto:${company.email}`}>{company.email}</a></li>
               <li><span className="contact__icon"><Phone /></span>{company.phones.join(' / ')}</li>
             </ul>
+            {whatsapp && (
+              <a className="btn btn--whatsapp contact__whatsapp" href={whatsappLink(whatsapp.number, whatsapp.message)} target="_blank" rel="noopener noreferrer">
+                <WhatsApp width={20} height={20} /> Chat on WhatsApp
+              </a>
+            )}
           </div>
 
           <form className="form" onSubmit={submit} noValidate>
@@ -64,26 +71,11 @@ export default function Contact() {
             </div>
             <Field label="Phone (optional)" name="phone" type="tel" value={form.phone} onChange={update} />
             <Field label="Message" name="message" as="textarea" value={form.message} onChange={update} error={errors.message} />
-            <label className="form__check">
-              <input type="checkbox" name="privacy" checked={form.privacy} onChange={update} />
-              <span>I have read and accept the <Link to="/privacy-policy">privacy policy</Link>.</span>
-            </label>
-            {errors.privacy && <span className="form__error">{errors.privacy}</span>}
+            <PrivacyConsent checked={form.privacy} onChange={update} error={errors.privacy} />
             <button type="submit" className="btn btn--primary">Send message</button>
           </form>
         </div>
       </section>
     </>
-  );
-}
-
-function Field({ label, name, as = 'input', error, ...rest }) {
-  const Tag = as;
-  return (
-    <label className="form__field">
-      <span>{label}</span>
-      <Tag name={name} aria-invalid={!!error} rows={as === 'textarea' ? 5 : undefined} {...rest} />
-      {error && <span className="form__error">{error}</span>}
-    </label>
   );
 }

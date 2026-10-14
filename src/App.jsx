@@ -1,32 +1,25 @@
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
 import ScrollManager from './components/ScrollManager.jsx';
-import Home from './pages/Home.jsx';
-import About from './pages/About.jsx';
-import Services from './pages/Services.jsx';
-import Contact from './pages/Contact.jsx';
-import Legal from './pages/Legal.jsx';
-import NotFound from './pages/NotFound.jsx';
+import SiteLayout from './components/SiteLayout.jsx';
+import DemoSwitcher from './components/DemoSwitcher.jsx';
+import { showDemoSwitcher } from './templates/index.js';
+import services from './templates/services/config.js';
+import restaurant from './templates/restaurant/config.js';
+import booking from './templates/booking/config.js';
+import ServicesRoutes from './templates/services/routes.jsx';
+import RestaurantRoutes from './templates/restaurant/routes.jsx';
+import BookingRoutes from './templates/booking/routes.jsx';
 
 export default function App() {
   return (
     <>
       <ScrollManager />
-      <Header />
-      <main id="content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/legal-notice" element={<Legal page="legal" />} />
-          <Route path="/privacy-policy" element={<Legal page="privacy" />} />
-          <Route path="/cookie-policy" element={<Legal page="cookies" />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+      <Routes>
+        <Route path={`${restaurant.base}/*`} element={<SiteLayout site={restaurant}><RestaurantRoutes /></SiteLayout>} />
+        <Route path={`${booking.base}/*`} element={<SiteLayout site={booking}><BookingRoutes /></SiteLayout>} />
+        <Route path="/*" element={<SiteLayout site={services}><ServicesRoutes /></SiteLayout>} />
+      </Routes>
+      {showDemoSwitcher && <DemoSwitcher />}
     </>
   );
 }

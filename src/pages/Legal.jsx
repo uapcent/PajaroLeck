@@ -1,8 +1,8 @@
 import PageBanner from '../components/PageBanner.jsx';
-import { company } from '../site.config.js';
+import { useSite } from '../lib/site.js';
 
 // Placeholder legal copy. Replace with text reviewed by the client's legal advisor.
-const pages = {
+const pages = (company, privacyPurpose) => ({
   legal: {
     title: 'Legal notice',
     sections: [
@@ -16,8 +16,8 @@ const pages = {
     title: 'Privacy policy',
     sections: [
       ['Data controller', `${company.legalName}, ${company.address}. Email: ${company.email}.`],
-      ['Purpose', 'We process the personal data you provide through the contact form solely to answer your enquiry.'],
-      ['Legal basis', 'The legal basis is your consent, given when you submit the form.'],
+      ['Purpose', privacyPurpose],
+      ['Legal basis', 'The legal basis is your consent, given when you submit a form on this website.'],
       ['Retention', 'Data is kept only as long as necessary to answer your request and meet legal obligations.'],
       ['Your rights', `You may request access, rectification, erasure, restriction or portability of your data by writing to ${company.email}.`],
     ],
@@ -30,10 +30,11 @@ const pages = {
       ['Managing cookies', 'You can allow, block or delete cookies through your browser settings.'],
     ],
   },
-};
+});
 
 export default function Legal({ page }) {
-  const { title, sections } = pages[page];
+  const { company, privacyPurpose } = useSite();
+  const { title, sections } = pages(company, privacyPurpose)[page];
   return (
     <>
       <PageBanner eyebrow="Legal" title={title} />

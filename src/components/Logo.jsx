@@ -1,8 +1,9 @@
-import { company } from '../site.config.js';
+import { useSite } from '../lib/site.js';
 
 // Simple bird mark + wordmark. Swap for the client's own logo file:
 // e.g. <img src="/logo.svg" alt={company.name} />
 export default function Logo({ size = 'md', light = false }) {
+  const { company } = useSite();
   return (
     <span className={`logo logo--${size} ${light ? 'logo--light' : ''}`}>
       <svg className="logo__mark" viewBox="0 0 64 64" aria-hidden="true">

@@ -1,9 +1,9 @@
-import { about } from '../site.config.js';
 import Eyebrow from './Eyebrow.jsx';
 import Reveal from './Reveal.jsx';
 import Logo from './Logo.jsx';
 
-export default function AboutSection({ media }) {
+// about: { eyebrow, title, titleAccent, paragraphs } from the template config.
+export default function AboutSection({ about, media }) {
   return (
     <section className="section section--cream">
       <div className="container about">

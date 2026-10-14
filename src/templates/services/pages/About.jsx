@@ -1,9 +1,9 @@
-import PageBanner from '../components/PageBanner.jsx';
-import AboutSection from '../components/AboutSection.jsx';
+import PageBanner from '../../../components/PageBanner.jsx';
+import AboutSection from '../../../components/AboutSection.jsx';
+import Photo from '../../../components/Photo.jsx';
+import Reveal from '../../../components/Reveal.jsx';
 import ServicesSection from '../components/ServicesSection.jsx';
-import Photo from '../components/Photo.jsx';
-import Reveal from '../components/Reveal.jsx';
-import { company, images } from '../site.config.js';
+import { about, company, images } from '../config.js';
 
 const stats = [
   { value: new Date().getFullYear() - company.founded + '+', label: 'Years of experience' },
@@ -15,7 +15,7 @@ export default function About() {
   return (
     <>
       <PageBanner eyebrow="Who we are" title="About us" />
-      <AboutSection media={<Photo src={images.about.src} alt={images.about.alt} className="about__photo" />} />
+      <AboutSection about={about} media={<Photo src={images.about.src} alt={images.about.alt} className="about__photo" />} />
       <section className="section">
         <div className="container stats">
           {stats.map((s, i) => (
