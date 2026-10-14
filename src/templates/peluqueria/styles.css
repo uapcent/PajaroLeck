@@ -53,7 +53,7 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 .pq-status.is-open::before { background: #69db7c; }
 
 .pq-booking { position: relative; z-index: 2; margin-top: -130px; padding-bottom: 56px; }
-.pq-booking__inner { max-width: 720px; }
+.pq-booking__inner { max-width: 880px; }
 
 /* ---------- Card & steps ---------- */
 .pq-card { background: var(--surface); border-radius: var(--radius); box-shadow: 0 24px 60px rgba(22, 22, 22, 0.14); overflow: hidden; }
@@ -75,7 +75,8 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 .pq-step__body { padding: 0 22px 22px; animation: pq-in 0.3s ease; }
 @keyframes pq-in { from { opacity: 0; transform: translateY(-6px); } }
 
-.pq-options { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.pq-options { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pq-options li { display: grid; }
 .pq-option {
   width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: left;
   padding: 14px 16px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface); cursor: pointer;
@@ -101,12 +102,15 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 
 .pq-days { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x mandatory; }
 .pq-day {
-  flex: none; width: 64px; display: grid; justify-items: center; padding: 10px 0; scroll-snap-align: start;
+  flex: none; width: 72px; display: grid; justify-items: center; padding: 10px 0; scroll-snap-align: start;
   border-radius: 14px; border: 2px solid var(--border); background: var(--surface); color: var(--ink); cursor: pointer; line-height: 1.2;
 }
 .pq-day:hover:not(:disabled) { border-color: var(--ink); }
 .pq-day:disabled { opacity: 0.4; cursor: not-allowed; background: var(--bg); }
 .pq-day.is-selected { background: var(--ink); border-color: var(--ink); color: #fff; }
+.pq-day.is-full { background: repeating-linear-gradient(-45deg, var(--bg) 0 6px, var(--border) 6px 7px); }
+.pq-day__month { white-space: nowrap; }
+.pq-day:disabled .pq-day__month { font-size: 10px; letter-spacing: 0; }
 .pq-day__dow, .pq-day__month { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
 .pq-day__num { font: 700 22px/1.2 var(--font-head); }
 .pq-when { margin: 10px 0 12px; font-weight: 600; color: var(--ink); }
@@ -192,6 +196,7 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
   .pq-step__head { padding: 16px; }
   .pq-step__body { padding: 0 16px 18px; }
   .pq-people { grid-template-columns: 1fr 1fr; }
+  .pq-options { grid-template-columns: 1fr; }
   .pq-form__row, .pq-info { grid-template-columns: 1fr; }
   .pq-section { padding: 40px 0; }
   .pq-entry { flex-wrap: wrap; }

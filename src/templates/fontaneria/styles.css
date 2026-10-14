@@ -190,7 +190,7 @@ html:has(.t-fontaneria) { scroll-behavior: smooth; }
   .fx-facts__grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
-  .t-fontaneria { --header-h: 64px; padding-bottom: 76px; }
+  .t-fontaneria { --header-h: 64px; --demo-offset: 76px; padding-bottom: 76px; }
   .fx-topline .fx-topline__extra { display: none; }
   .fx-topline__inner { justify-content: center; }
   .fx-header__number { display: none; }
