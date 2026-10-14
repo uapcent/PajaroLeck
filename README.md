@@ -1,8 +1,8 @@
 # PajaroLeck – Webs de ejemplo
 
 React + Vite demo of three Spanish-language websites for small businesses. Each one has its own
-look, layout and main action, so a prospect can't mistake one for another. A **"Ver otro
-ejemplo"** dropdown in the thin strip at the top switches between them.
+look, layout and main action, so a prospect can't mistake one for another. A small
+**"Ejemplo"** button in the bottom-left corner switches between them.
 
 | Template | URL | Business | Main action | Backend |
 |---|---|---|---|---|
@@ -36,7 +36,8 @@ there and opens into the form. The request is sent as a pre-filled WhatsApp mess
 
 **Peluquería** – the booking comes first.
 Service → stylist ("me da igual" or a name) → day and free time → name and phone. Each step
-folds into a summary once answered. The confirmation offers "Guardar en mi calendario" (.ics)
+folds into a summary once answered. Days that can't be booked are greyed out with the reason:
+*cerrado*, *completo* (no free time left for that service) or *descansa* (the chosen stylist is off). The confirmation offers "Guardar en mi calendario" (.ics)
 and a WhatsApp link to change the appointment. Hours, prices and a two-line "about" come
 after. `/peluqueria/agenda` is the salon's view (demo password: `demo`).
 Nothing about the customer is remembered between visits.
@@ -50,8 +51,8 @@ backend (e.g. PocketBase or Supabase); the pages don't need to change.
 
 ```
 src/
-  styles.css        base styles shared by all templates (forms, legal pages, demo strip)
-  components/       invisible plumbing: form fields, consent checkbox, icons, demo strip…
+  styles.css        base styles shared by all templates (forms, legal pages, demo switcher)
+  components/       invisible plumbing: form fields, consent checkbox, icons, demo switcher…
   pages/            legal pages in Spanish (aviso legal, privacidad, cookies) and 404
   lib/              helpers: Spanish dates and prices, opening hours, WhatsApp/phone links
   templates/
@@ -68,7 +69,7 @@ template's `config.js`.**
 
 1. Keep only that template's folder and set `base = ''` in its `config.js`.
 2. In `src/App.jsx`, mount only that template's routes; remove the others from `src/templates/index.js`.
-3. Build with `VITE_DEMO_SWITCHER=off npm run build` to hide the demo strip.
+3. Build with `VITE_DEMO_SWITCHER=off npm run build` to hide the demo switcher.
 4. Fill in the real company details (name, NIF, address) – they also feed the legal pages –
    and have the client's legal advisor review the legal texts in `src/pages/Legal.jsx`.
 5. Photos load by URL from [Pexels](https://www.pexels.com/license/) (free to use). Swap the

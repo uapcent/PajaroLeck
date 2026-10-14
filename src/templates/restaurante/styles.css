@@ -16,6 +16,7 @@
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-hand: 'Caveat', 'Comic Sans MS', cursive;
   padding-bottom: 72px; /* room for the reservation bar */
+  --demo-offset: 72px; /* keep the demo switcher above the bar */
   /* subtle paper grain */
   background-image: radial-gradient(rgba(43, 33, 27, 0.045) 1px, transparent 1px);
   background-size: 6px 6px;
@@ -100,8 +101,8 @@ html:has(.t-restaurante) { scroll-behavior: smooth; }
 .rs-veg { display: inline-block; margin-right: 8px; padding: 1px 9px; border-radius: 999px; background: #e3e8d2; color: var(--olive); font-weight: 600; }
 .rs-menu__foot { margin: 8px auto 0; max-width: 60ch; text-align: center; color: var(--muted); font-size: 15px; }
 
-.rs-gallery { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 8px; height: 340px; }
-.rs-gallery__img { width: 100%; height: 100%; object-fit: cover; }
+.rs-gallery { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 8px; }
+.rs-gallery__img { width: 100%; height: 340px; object-fit: cover; }
 
 /* ---------- Floating reservation bar ---------- */
 .rs-bar {
@@ -191,7 +192,8 @@ html:has(.t-restaurante) { scroll-behavior: smooth; }
   .rs-board__dish { font-size: 44px; }
   .rs-menu__cols { columns: 1; }
   .rs-visit__grid { grid-template-columns: 1fr; gap: 32px; }
-  .rs-gallery { height: 220px; grid-template-columns: 1fr 1fr; }
+  .rs-gallery { grid-template-columns: 1fr 1fr; }
+  .rs-gallery__img { height: 220px; }
   .rs-gallery__img:last-child { display: none; }
 }
 @media (max-width: 560px) {
@@ -200,6 +202,7 @@ html:has(.t-restaurante) { scroll-behavior: smooth; }
   .rs-form__row { grid-template-columns: 1fr; }
   .rs-reserve__bar { padding: 18px 20px; }
   .rs-bar__status { font-size: 14px; }
+  .t-restaurante { --demo-offset: 84px; }
   .rs-bar .rs-btn { padding: 13px 18px; font-size: 16px; white-space: nowrap; }
   .rs-pill { flex: 1 0 auto; }
 }

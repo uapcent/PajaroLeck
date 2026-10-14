@@ -1,8 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ScrollManager from './components/ScrollManager.jsx';
-import DemoSwitcher from './components/DemoSwitcher.jsx';
-import { showDemoSwitcher } from './templates/index.js';
 import restaurante from './templates/restaurante/config.js';
 import peluqueria from './templates/peluqueria/config.js';
 
@@ -15,7 +13,6 @@ export default function App() {
   return (
     <>
       <ScrollManager />
-      {showDemoSwitcher && <DemoSwitcher />}
       <Suspense fallback={null}>
         <Routes>
           <Route path={`${restaurante.base}/*`} element={<Restaurante />} />
