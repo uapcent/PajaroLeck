@@ -1,13 +1,14 @@
-# PajaroLeck – Website Templates
+# PajaroLeck – Webs de ejemplo
 
-React + Vite demo of three website templates for small businesses. A small **"Demo" dropdown**
-(bottom-left) switches between them so clients can try each one.
+React + Vite demo of three Spanish-language websites for small businesses. Each one has its own
+look, layout and main action, so a prospect can't mistake one for another. A **"Ver otro
+ejemplo"** dropdown in the thin strip at the top switches between them.
 
-| Template | URL | For | Backend |
-|---|---|---|---|
-| **Services** | `/` | Trades, repairs, installers, consultants | None (contact form + WhatsApp button) |
-| **Restaurant** | `/restaurant` | Restaurants, bars, cafés | None (table requests go out as a WhatsApp message) |
-| **Booking** | `/booking` | Hairdressers, barbers, physios | **Mocked** – see below |
+| Template | URL | Business | Main action | Backend |
+|---|---|---|---|---|
+| **Fontanería** | `/` | Fontanería Martín (plumber) | Call / WhatsApp | None |
+| **Restaurante** | `/restaurante` | El Nido (casa de comidas) | Reserve a table | None (request goes out by WhatsApp) |
+| **Peluquería** | `/peluqueria` | Plumas (hair salon) | Book an appointment | **Mocked** – see below |
 
 ## Getting started
 
@@ -18,52 +19,61 @@ npm run build    # production build in dist/
 npm run preview  # serve the build
 ```
 
+## What each template does
+
+**Fontanería** – one page built to earn trust before the call.
+Google rating at the top, phone number in large type, services with "desde" prices,
+before/after photo sliders, reviews (fictional for the demo – use only the client's real
+Google reviews), how we work, towns covered, and a "call me back" form. On phones a bar with
+**Llamar | WhatsApp** stays at the bottom.
+
+**Restaurante** – the menu and the dish of the day, with booking always at hand.
+A chalkboard shows today's dish (one per weekday, set in the config) and the menú del día.
+The carta lists the allergens of every dish (EU Regulation 1169/2011) with filters
+(sin gluten, sin lácteos, vegetariano). A bar at the bottom shows whether the restaurant is
+open and a **Reservar mesa** button; when you reach the reservation section the bar "lands"
+there and opens into the form. The request is sent as a pre-filled WhatsApp message.
+
+**Peluquería** – the booking comes first.
+Service → stylist ("me da igual" or a name) → day and free time → name and phone. Each step
+folds into a summary once answered. The confirmation offers "Guardar en mi calendario" (.ics)
+and a WhatsApp link to change the appointment. Hours, prices and a two-line "about" come
+after. `/peluqueria/agenda` is the salon's view (demo password: `demo`).
+Nothing about the customer is remembered between visits.
+
+**The booking backend is simulated** (`templates/peluqueria/mockApi.js`): it invents plausible
+appointments and keeps new ones in memory only, so a reload resets it. For a real client,
+replace the bodies of `listBookings`, `createBooking` and `cancelBooking` with calls to a small
+backend (e.g. PocketBase or Supabase); the pages don't need to change.
+
 ## Project layout
 
 ```
 src/
-  components/      shared UI (header, footer, hero, forms, WhatsApp button, demo switcher…)
-  pages/           shared pages (legal, 404)
-  lib/             helpers (site context, dates, prices, WhatsApp links)
+  styles.css        base styles shared by all templates (forms, legal pages, demo strip)
+  components/       invisible plumbing: form fields, consent checkbox, icons, demo strip…
+  pages/            legal pages in Spanish (aviso legal, privacidad, cookies) and 404
+  lib/              helpers: Spanish dates and prices, opening hours, WhatsApp/phone links
   templates/
-    services/      config.js + pages – Home, About, Services, Contact
-    restaurant/    config.js + pages – Home, Menu (dietary filters), Reserve
-    booking/       config.js + pages – Home, Book, Admin · mockApi.js · slots.js
+    fontaneria/     config.js · Layout · Home · BeforeAfter · styles.css
+    restaurante/    config.js · Layout · Home · slots.js · styles.css
+    peluqueria/     config.js · Layout · Home · Booking · Agenda · mockApi.js · styles.css
 ```
 
-Each template's `config.js` holds all its text, contact details, menu/services, images and
-URL `base`. Shared components read the active template's config through `useSite()`.
-
-## The booking demo
-
-- Customers pick a service → day → free time → enter name and phone → get a confirmation with
-  a booking code, an **Add to calendar** (.ics) button and a WhatsApp link to the salon.
-- Free times come from the weekly `schedule` in `booking/config.js` (opening hours, slot step,
-  days ahead, minimum notice) minus existing bookings (`slots.js`).
-- `/booking/admin` is the owner view (demo password: `demo`): appointments per day, call, cancel.
-- **`mockApi.js` is a fake backend.** It invents plausible appointments and keeps new ones in
-  memory only – nothing is sent or stored, and a reload resets it. For a real client, replace
-  the bodies of `listBookings`, `createBooking` and `cancelBooking` with calls to a small backend
-  (e.g. PocketBase or Supabase); the UI does not need to change.
+Each template has its own header, footer, fonts and stylesheet (scoped under `.t-<name>`) and
+is only downloaded when visited. **All texts, prices, hours, dishes and photos are in that
+template's `config.js`.**
 
 ## Delivering one template to a client
 
-1. Copy the project, keep only that template's folder and set `base = ''` in its `config.js`.
-2. In `src/App.jsx`, mount only that template's routes; delete the others from `src/templates/index.js`.
-3. Build with `VITE_DEMO_SWITCHER=off npm run build` to hide the demo dropdown.
-
-## Rebranding
-
-1. **Text, contact details, menu, services, hours** → the template's `config.js`
-2. **Colors, fonts, radius** → CSS variables at the top of `src/styles.css`; per-template overrides
-   in `.theme-restaurant` / `.theme-booking`
-3. **Logo** → `src/components/Logo.jsx` (replace the SVG with an `<img>` of the client logo)
-4. **Photos** → `images` in the config. Photos load by URL from
-   [Pexels](https://www.pexels.com/license/) (free to use). Swap a Pexels photo ID, or replace
-   any `src` with another URL or a file in `public/`. Photos that fail to load fall back to brand colors.
-5. **WhatsApp** → `whatsapp` in the config (`null` hides the floating button)
-6. **Contact form** → wire up a service (Formspree, EmailJS…) at the `TODO` in `templates/services/pages/Contact.jsx`
-7. **Legal pages** → replace the placeholder copy in `src/pages/Legal.jsx` with text reviewed by the client's legal advisor
+1. Keep only that template's folder and set `base = ''` in its `config.js`.
+2. In `src/App.jsx`, mount only that template's routes; remove the others from `src/templates/index.js`.
+3. Build with `VITE_DEMO_SWITCHER=off npm run build` to hide the demo strip.
+4. Fill in the real company details (name, NIF, address) – they also feed the legal pages –
+   and have the client's legal advisor review the legal texts in `src/pages/Legal.jsx`.
+5. Photos load by URL from [Pexels](https://www.pexels.com/license/) (free to use). Swap the
+   photo ID in `config.js`, or use any URL or a file in `public/`. Photos that fail to load
+   fall back to a colour block.
 
 ## Deployment
 

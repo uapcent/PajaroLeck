@@ -1,5 +1,5 @@
-// Returns a price formatter for a template's currency config, e.g. { locale: 'en-IE', code: 'EUR' }.
-export const priceFormatter = ({ locale, code }) => {
-  const fmt = new Intl.NumberFormat(locale, { style: 'currency', currency: code });
-  return (n) => fmt.format(n);
-};
+// Spanish price format: 13,50 € — whole amounts without decimals: 25 €.
+const withCents = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' });
+const whole = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+
+export const price = (n) => (Number.isInteger(n) ? whole : withCents).format(n);

@@ -10,8 +10,14 @@ export const parseISODate = (s) => {
 
 export const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
 
+// 'martes, 15 de octubre'
 export const formatDate = (s, opts = { weekday: 'long', day: 'numeric', month: 'long' }) =>
-  parseISODate(s).toLocaleDateString('en-GB', opts);
+  parseISODate(s).toLocaleDateString('es-ES', opts);
+
+export const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+// Index 0 = Sunday, as in Date.getDay()
+export const weekdayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 
 // 'HH:MM' <-> minutes since midnight
 export const toMinutes = (t) => {
