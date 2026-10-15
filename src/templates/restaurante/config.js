@@ -38,6 +38,11 @@ export const images = {
     { src: pexels(33389174, 900), alt: 'Croquetas, patatas bravas y pan con tomate' },
     { src: pexels(8969237, 900), alt: 'Arroz con marisco en su paella' },
     { src: pexels(1581384, 900), alt: 'Mesa preparada en el comedor' },
+    { src: pexels(19524049, 900), alt: 'Paella de marisco recién hecha' },
+    { src: pexels(33703370, 900), alt: 'La barra del bar' },
+    { src: pexels(30036946, 900), alt: 'Tapas variadas para compartir' },
+    { src: pexels(30663889, 900), alt: 'Clientes comiendo en el comedor' },
+    { src: pexels(225228, 900), alt: 'Copa de vino en la mesa' },
   ],
 };
 

@@ -4,6 +4,7 @@ import PrivacyConsent from '../../components/PrivacyConsent.jsx';
 import * as Icons from '../../components/Icons.jsx';
 import { telLink, whatsappLink } from '../../lib/site.js';
 import { price } from '../../lib/format.js';
+import Photo from '../../components/Photo.jsx';
 import BeforeAfter from './BeforeAfter.jsx';
 import { callbackTopics, company, facts, hero, jobs, rating, reviews, services, steps, towns, whatsappMessage } from './config.js';
 
@@ -46,14 +47,11 @@ export default function Home() {
 function Hero() {
   return (
     <section className="fx-hero">
+      <div className="fx-hero__photo" aria-hidden="true">
+        <Photo src={hero.photo.src} alt="" className="fx-hero__img" loading="eager" />
+      </div>
       <div className="container fx-hero__grid">
         <div>
-          <a className="fx-rating" href="#opiniones">
-            <GoogleG />
-            <strong>{score}</strong>
-            <Stars />
-            <span>{rating.count} opiniones en Google</span>
-          </a>
           <h1 className="fx-hero__title">{hero.title}</h1>
           <p className="fx-hero__text">{hero.text}</p>
           <ul className="fx-hero__promises">

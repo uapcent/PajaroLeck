@@ -47,7 +47,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="precios" className="pq-section pq-section--soft">
+      <section id="precios" className="pq-section pq-section--photo">
+        <div className="pq-section__bg" aria-hidden="true">
+          <Photo src={images.prices.src} alt="" className="pq-section__bg-img" />
+        </div>
         <div className="container pq-prices">
           <h2 className="pq-title">Precios</h2>
           <ul>
@@ -63,7 +66,13 @@ export default function Home() {
 
       <section className="pq-section pq-about">
         <div className="container">
+          <h2 className="pq-title">Quiénes somos</h2>
           <p>{about}</p>
+          <div className="pq-team">
+            {images.team.map((img) => (
+              <Photo key={img.src} src={img.src} alt={img.alt} className="pq-team__img" />
+            ))}
+          </div>
         </div>
       </section>
     </>
