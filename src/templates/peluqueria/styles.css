@@ -1,4 +1,4 @@
-/* Peluquería – modern and app-like. White cards, black buttons, pink accent on a deep plum secondary. */
+/* Peluquería – modern and app-like. White cards, black buttons, pink accent with deep plum sections. */
 .t-peluqueria {
   --bg: #faf7f4;
   --surface: #ffffff;
@@ -52,7 +52,7 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 /* ---------- Banner + booking card overlap ---------- */
 .pq-banner { position: relative; height: 300px; background: #2a2622; overflow: hidden; }
 .pq-banner__img { width: 100%; height: 100%; object-fit: cover; }
-.pq-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(45, 27, 51, 0.2), rgba(45, 27, 51, 0.75) 75%, var(--plum)); }
+.pq-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.6)); }
 .pq-banner__text { position: absolute; left: 0; right: 0; top: 56px; z-index: 1; text-align: center; color: #fff; }
 .pq-banner__text h1 { color: #fff; font-size: clamp(36px, 6vw, 56px); margin-bottom: 8px; }
 .pq-status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); font-size: 15px; font-weight: 600; }
@@ -60,11 +60,6 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 .pq-status.is-open::before { background: #69db7c; }
 
 .pq-booking { position: relative; z-index: 2; margin-top: -130px; padding-bottom: 56px; }
-/* Plum band behind the booking card, continuing the banner */
-.pq-booking::before {
-  content: ''; position: absolute; z-index: -1; left: 0; right: 0; top: 130px; height: 50%;
-  background: linear-gradient(180deg, var(--plum), var(--plum) 55%, transparent);
-}
 .pq-booking__inner { max-width: 880px; }
 
 /* ---------- Card & steps ---------- */
