@@ -59,6 +59,14 @@ export const booking = {
 
 export const images = {
   banner: { src: pexels(7750099, 1920), alt: 'Interior del salón' },
+  // Fondo de la sección de precios (se ve oscurecido, casi como una textura).
+  prices: { src: pexels(6599031, 1920) },
+  // Fotos del equipo trabajando, junto al texto "Quiénes somos".
+  team: [
+    { src: pexels(3993453, 900), alt: 'Carmen cortando el pelo a una clienta' },
+    { src: pexels(6599031, 900), alt: 'Andrés cortando el pelo a un cliente' },
+    { src: pexels(7755222, 900), alt: 'Lucía terminando un corte con tijera y peine' },
+  ],
 };
 
 export const about = 'Somos Carmen, Lucía y Andrés. Llevamos más de diez años cortando el pelo en el barrio, sin prisas y con buen café.';

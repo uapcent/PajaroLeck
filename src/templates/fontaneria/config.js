@@ -21,13 +21,15 @@ export const company = {
   since: 2003,
 };
 
-// Valoración que se muestra arriba del todo. Con un cliente real: la de su ficha de Google.
+// Valoración que se muestra en la sección de opiniones. Con un cliente real: la de su ficha de Google.
 export const rating = { score: 4.9, count: 127, url: 'https://www.google.com/maps' };
 
 export const hero = {
   title: 'Tu fontanero de confianza en Castellón',
   text: 'Fugas, atascos, calentadores y reformas de baño. Te damos el precio antes de empezar y lo dejamos todo limpio.',
   promises: ['Llegamos en menos de 1 hora', 'Precio cerrado, sin sorpresas', '2 años de garantía'],
+  // Foto de fondo, oscurecida con un filtro azul. Con un cliente real: una foto suya trabajando.
+  photo: { src: pexels(6050244, 1920) },
 };
 
 export const whatsappMessage = 'Hola, necesito un fontanero. Os cuento:';
@@ -67,6 +69,13 @@ export const jobs = [
     place: 'Benicàssim · 2 días de obra',
     before: { src: pexels(13312223, 1200), alt: 'Tuberías y llaves oxidadas' },
     after: { src: pexels(6419128, 1200), alt: 'Instalación nueva de tuberías' },
+  },
+  // El cuarto trabajo solo se ve con la cuadrícula de 2 columnas (tablet), para no dejar un hueco.
+  {
+    title: 'Cambio de grifería',
+    place: 'Almassora · 2 horas',
+    before: { src: pexels(3616761, 1200), alt: 'Grifos antiguos de pared' },
+    after: { src: pexels(27459830, 1200), alt: 'Fregadero con grifo nuevo' },
   },
 ];
 

@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import Field from '../../components/Field.jsx';
 import Photo from '../../components/Photo.jsx';
 import PrivacyConsent from '../../components/PrivacyConsent.jsx';
-import { Check, Clock, MapPin, Minus, Phone, Plus, WhatsApp } from '../../components/Icons.jsx';
+import { ArrowRight, Check, Clock, MapPin, Minus, Phone, Plus, WhatsApp } from '../../components/Icons.jsx';
 import { directionsLink, telLink, whatsappLink } from '../../lib/site.js';
 import { addDays, capitalize, formatDate, toISODate, weekdayNames } from '../../lib/dates.js';
 import { price } from '../../lib/format.js';
@@ -131,13 +131,27 @@ function Menu() {
   );
 }
 
+// Horizontal strip of photos: swipe on phones, arrows or trackpad on desktop.
 function Gallery() {
+  const track = useRef(null);
+  const scroll = (dir) => {
+    const el = track.current;
+    el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
+  };
   return (
-    <div className="rs-gallery" aria-label="Fotos del restaurante">
-      {images.gallery.map((img) => (
-        <Photo key={img.src} src={img.src} alt={img.alt} className="rs-gallery__img" />
-      ))}
-    </div>
+    <section className="rs-gallery" aria-label="Fotos del restaurante">
+      <div ref={track} className="rs-gallery__track" tabIndex={0}>
+        {images.gallery.map((img) => (
+          <Photo key={img.src} src={img.src} alt={img.alt} className="rs-gallery__img" />
+        ))}
+      </div>
+      <button type="button" className="rs-gallery__arrow rs-gallery__arrow--prev" onClick={() => scroll(-1)} aria-label="Fotos anteriores">
+        <ArrowRight />
+      </button>
+      <button type="button" className="rs-gallery__arrow rs-gallery__arrow--next" onClick={() => scroll(1)} aria-label="Más fotos">
+        <ArrowRight />
+      </button>
+    </section>
   );
 }
 

@@ -1,4 +1,4 @@
-/* Peluquería – modern and app-like. White cards, black buttons, one pink accent. */
+/* Peluquería – modern and app-like. White cards, black buttons, pink accent on a deep plum secondary. */
 .t-peluqueria {
   --bg: #faf7f4;
   --surface: #ffffff;
@@ -9,9 +9,16 @@
   --accent: #e83e74;
   --accent-ink: #ffffff;
   --accent-soft: #ffe3ec;
+  --plum: #2d1b33;
+  --plum-soft: #f3e9f1;
   --radius: 18px;
   --font-head: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
+}
+.t-peluqueria {
+  /* Faint dotted texture so the light areas aren't a flat white */
+  background-image: radial-gradient(rgba(45, 27, 51, 0.07) 1px, transparent 1.5px);
+  background-size: 22px 22px;
 }
 .t-peluqueria h1, .t-peluqueria h2, .t-peluqueria h3 { font-weight: 700; letter-spacing: -0.02em; }
 .t-peluqueria [id] { scroll-margin-top: 80px; }
@@ -45,7 +52,7 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 /* ---------- Banner + booking card overlap ---------- */
 .pq-banner { position: relative; height: 300px; background: #2a2622; overflow: hidden; }
 .pq-banner__img { width: 100%; height: 100%; object-fit: cover; }
-.pq-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.6)); }
+.pq-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(45, 27, 51, 0.2), rgba(45, 27, 51, 0.75) 75%, var(--plum)); }
 .pq-banner__text { position: absolute; left: 0; right: 0; top: 56px; z-index: 1; text-align: center; color: #fff; }
 .pq-banner__text h1 { color: #fff; font-size: clamp(36px, 6vw, 56px); margin-bottom: 8px; }
 .pq-status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); font-size: 15px; font-weight: 600; }
@@ -53,6 +60,11 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 .pq-status.is-open::before { background: #69db7c; }
 
 .pq-booking { position: relative; z-index: 2; margin-top: -130px; padding-bottom: 56px; }
+/* Plum band behind the booking card, continuing the banner */
+.pq-booking::before {
+  content: ''; position: absolute; z-index: -1; left: 0; right: 0; top: 130px; height: 50%;
+  background: linear-gradient(180deg, var(--plum), var(--plum) 55%, transparent);
+}
 .pq-booking__inner { max-width: 880px; }
 
 /* ---------- Card & steps ---------- */
@@ -136,8 +148,15 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 /* ---------- Info, prices, about ---------- */
 .pq-section { padding: 56px 0; }
 .pq-section--soft { background: var(--surface); }
+/* Section over a darkened photo: content sits on white cards */
+.pq-section--photo { position: relative; overflow: hidden; background: var(--plum); padding: 72px 0; }
+.pq-section__bg { position: absolute; inset: 0; }
+.pq-section__bg-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); opacity: 0.35; }
+.pq-section__bg .photo-fallback { display: none; }
+.pq-section__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(45, 27, 51, 0.9), rgba(45, 27, 51, 0.7) 60%, rgba(232, 62, 116, 0.45)); }
+.pq-section--photo .container { position: relative; }
 .pq-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 960px; }
-.pq-panel { background: var(--surface); border-radius: var(--radius); padding: 24px; border: 1px solid var(--border); }
+.pq-panel { background: var(--surface); border-radius: var(--radius); padding: 24px; border: 1px solid var(--border); border-top: 5px solid var(--accent); }
 .pq-panel h2 { display: flex; align-items: center; gap: 10px; font-size: 22px; }
 .pq-panel h2 svg { color: var(--accent); }
 .pq-panel__actions { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -147,12 +166,20 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 .pq-hours dt { font-weight: 600; color: var(--ink); white-space: nowrap; }
 .pq-hours dd { margin: 0; text-align: right; }
 .pq-prices { max-width: 720px; }
+.pq-section--photo .pq-prices { background: var(--surface); border-radius: var(--radius); padding: 28px 32px 16px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3); }
 .pq-prices ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.pq-prices li:last-child { border-bottom: 0; }
 .pq-prices li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
 .pq-prices__name { display: grid; color: var(--ink); font-weight: 600; }
 .pq-prices__name small { font-weight: 400; color: var(--muted); font-size: 14px; }
-.pq-prices strong { font: 700 20px/1 var(--font-head); color: var(--ink); }
-.pq-about p { max-width: 56ch; margin: 0 auto; text-align: center; color: var(--muted); }
+.pq-prices strong { font: 700 20px/1 var(--font-head); color: var(--accent); }
+.pq-about { background: var(--plum-soft); }
+.pq-about .pq-title { text-align: center; }
+.pq-about p { max-width: 56ch; margin: 0 auto; text-align: center; color: var(--text); font-size: 19px; }
+.pq-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+.pq-team__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); background: var(--plum); }
+.pq-team__img:nth-child(2) { transform: translateY(24px); }
+.pq-about { padding-bottom: 80px; }
 
 /* ---------- Agenda (owner view) ---------- */
 .pq-agenda .container { max-width: 760px; }
@@ -199,6 +226,12 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
   .pq-options { grid-template-columns: 1fr; }
   .pq-form__row, .pq-info { grid-template-columns: 1fr; }
   .pq-section { padding: 40px 0; }
+  .pq-section--photo { padding: 48px 0; }
+  .pq-section--photo .pq-prices { padding: 20px 20px 8px; }
+  .pq-team { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 24px -20px 0; padding: 0 20px 8px; scrollbar-width: none; }
+  .pq-team__img { flex: none; width: 70%; scroll-snap-align: center; }
+  .pq-team__img:nth-child(2) { transform: none; }
+  .pq-about { padding-bottom: 48px; }
   .pq-entry { flex-wrap: wrap; }
   .pq-entry__info { flex-basis: calc(100% - 72px); }
   .pq-entry__call { margin-left: 66px; }

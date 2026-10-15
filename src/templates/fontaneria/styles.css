@@ -59,12 +59,18 @@ html:has(.t-fontaneria) { scroll-behavior: smooth; }
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 120px),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 120px);
 }
-.fx-hero__grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
-.fx-rating {
-  display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px 14px; margin-bottom: 20px;
-  background: #fff; color: var(--ink); border-radius: 999px; text-decoration: none; font-size: 15px;
+/* Photo of the plumber behind the text, tinted navy so it doesn't compete with it */
+.fx-hero__photo { position: absolute; inset: 0; }
+.fx-hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; filter: grayscale(0.6) contrast(1.05); }
+.fx-hero__photo .photo-fallback { display: none; }
+.fx-hero__photo::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 120px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 120px),
+    linear-gradient(90deg, rgba(14, 42, 71, 0.94) 0%, rgba(14, 42, 71, 0.82) 55%, rgba(14, 42, 71, 0.7) 100%);
 }
-.fx-rating strong { font-size: 18px; }
+.fx-hero__grid { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
 .fx-stars { display: inline-flex; color: #f5a623; }
 .fx-hero__title { color: #fff; font-size: clamp(44px, 7vw, 76px); line-height: 0.95; margin-bottom: 20px; }
 .fx-hero__text { font-size: 20px; max-width: 34ch; }
@@ -112,6 +118,8 @@ html:has(.t-fontaneria) { scroll-behavior: smooth; }
 
 /* Before / after */
 .fx-jobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+/* The 4th job only fills the gap of the 2-column layout (see the media queries) */
+.fx-job:nth-child(n + 4) { display: none; }
 .fx-job { margin: 0; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 0 var(--border); }
 .fx-job figcaption { display: grid; padding: 16px 18px; }
 .fx-job figcaption strong { font: 800 22px/1.1 var(--font-head); text-transform: uppercase; color: var(--ink); }
@@ -188,6 +196,7 @@ html:has(.t-fontaneria) { scroll-behavior: smooth; }
   .fx-reviews__summary { position: static; }
   .fx-services, .fx-jobs { grid-template-columns: 1fr 1fr; }
   .fx-facts__grid { grid-template-columns: 1fr 1fr; }
+  .fx-job:nth-child(4) { display: block; }
 }
 @media (max-width: 640px) {
   .t-fontaneria { --header-h: 64px; --demo-offset: 76px; padding-bottom: 76px; }
@@ -197,10 +206,12 @@ html:has(.t-fontaneria) { scroll-behavior: smooth; }
   .fx-header__call { width: 48px; height: 48px; padding: 0; border-radius: 50%; }
   .fx-logo__text strong { font-size: 26px; }
   .fx-hero { padding: 32px 0 48px; }
+  .fx-hero__photo::after { background: linear-gradient(rgba(14, 42, 71, 0.86), rgba(14, 42, 71, 0.86)); }
   .fx-hero__text { font-size: 18px; }
   .fx-ticket { box-shadow: 6px 6px 0 var(--accent); padding: 22px; }
   .fx-section { padding: 56px 0; }
   .fx-services, .fx-jobs, .fx-reviews__list, .fx-steps, .fx-footer__grid { grid-template-columns: 1fr; }
+  .fx-job:nth-child(4) { display: none; }
   .fx-fact strong { font-size: 32px; }
   .fx-form { box-shadow: 6px 6px 0 var(--navy); padding: 22px; }
   .fx-callbar {
