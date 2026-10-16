@@ -22,22 +22,24 @@ export const company = {
 };
 
 // Servicios que se pueden reservar. duration en minutos.
+// category agrupa la carta en los diseños B y C.
 export const services = [
-  { id: 'corte-mujer', name: 'Corte mujer', detail: 'Lavar, cortar y peinar', duration: 45, price: 28 },
-  { id: 'corte-hombre', name: 'Corte hombre', detail: 'Lavar y cortar', duration: 30, price: 15 },
-  { id: 'corte-barba', name: 'Corte + barba', detail: 'Con toalla caliente', duration: 45, price: 22 },
-  { id: 'barba', name: 'Arreglo de barba', duration: 20, price: 10 },
-  { id: 'tinte', name: 'Tinte raíz', detail: 'Incluye lavado y peinado', duration: 90, price: 38 },
-  { id: 'mechas', name: 'Mechas', detail: 'Incluye lavado y peinado', duration: 120, price: 65 },
-  { id: 'peinado', name: 'Lavar y peinar', duration: 30, price: 18 },
-  { id: 'infantil', name: 'Corte infantil', detail: 'Hasta 12 años', duration: 20, price: 12 },
+  { id: 'corte-mujer', category: 'Cortes', name: 'Corte mujer', detail: 'Lavar, cortar y peinar', duration: 45, price: 28 },
+  { id: 'corte-hombre', category: 'Cortes', name: 'Corte hombre', detail: 'Lavar y cortar', duration: 30, price: 15 },
+  { id: 'corte-barba', category: 'Barbería', name: 'Corte + barba', detail: 'Con toalla caliente', duration: 45, price: 22 },
+  { id: 'barba', category: 'Barbería', name: 'Arreglo de barba', duration: 20, price: 10 },
+  { id: 'tinte', category: 'Color', name: 'Tinte raíz', detail: 'Incluye lavado y peinado', duration: 90, price: 38 },
+  { id: 'mechas', category: 'Color', name: 'Mechas', detail: 'Incluye lavado y peinado', duration: 120, price: 65 },
+  { id: 'peinado', category: 'Peinados', name: 'Lavar y peinar', duration: 30, price: 18 },
+  { id: 'infantil', category: 'Cortes', name: 'Corte infantil', detail: 'Hasta 12 años', duration: 20, price: 12 },
 ];
 
 // Peluqueros. days: días que trabaja (0 = domingo).
+// role y bio se ven en los diseños B y C.
 export const stylists = [
-  { id: 'carmen', name: 'Carmen', color: '#ff7aa2', days: [2, 3, 4, 5, 6] },
-  { id: 'lucia', name: 'Lucía', color: '#7cc6b5', days: [2, 3, 4, 5, 6] },
-  { id: 'andres', name: 'Andrés', color: '#f5b642', days: [2, 3, 4, 5] },
+  { id: 'carmen', name: 'Carmen', color: '#ff7aa2', days: [2, 3, 4, 5, 6], role: 'Corte y color', bio: 'Abrió Plumas en 2014. Si no sabes qué hacerte, pregúntale a ella.' },
+  { id: 'lucia', name: 'Lucía', color: '#7cc6b5', days: [2, 3, 4, 5, 6], role: 'Mechas y recogidos', bio: 'Rubios, balayage y novias. Tiene una paciencia infinita.' },
+  { id: 'andres', name: 'Andrés', color: '#f5b642', days: [2, 3, 4, 5], role: 'Barbería', bio: 'Degradados, navaja y toalla caliente. Y charla de fútbol si te apetece.' },
 ];
 
 // Horario semanal del salón. 0 = domingo. [] = cerrado.
@@ -68,6 +70,19 @@ export const images = {
     { src: pexels(7755222, 900), alt: 'Lucía terminando un corte con tijera y peine' },
   ],
 };
+
+// Opiniones de EJEMPLO para la demo. Con un cliente real, usar solo sus reseñas reales de Google.
+export const rating = { score: 4.9, count: 212 };
+export const reviews = [
+  { name: 'Marta G.', when: 'hace 1 semana', text: 'Lucía me hizo unas mechas que parecen de sol de verdad. Me explicó todo y no tuve prisa en ningún momento.' },
+  { name: 'Javier R.', when: 'hace 3 semanas', text: 'Andrés es un crack con la navaja. Pido cita desde el móvil en un minuto y nunca espero.' },
+  { name: 'Rosa V.', when: 'hace 1 mes', text: 'Voy con mi hija desde que era pequeña. Carmen siempre sabe lo que nos queda bien.' },
+  { name: 'Elena P.', when: 'hace 2 meses', text: 'Me peinaron para la boda de mi hermana y aguantó toda la noche. Trato de diez.' },
+  { name: 'Vicent C.', when: 'hace 3 meses', text: 'Buen corte, buen precio y buen café. ¿Qué más se puede pedir?' },
+];
+
+export const since = 2014;
+export const instagram = '@plumas.peluqueria';
 
 export const about = 'Somos Carmen, Lucía y Andrés. Llevamos más de diez años cortando el pelo en el barrio, sin prisas y con buen café.';
 

@@ -3,6 +3,7 @@ import { LegalLinks } from '../../pages/Legal.jsx';
 import { telLink } from '../../lib/site.js';
 import { Phone } from '../../components/Icons.jsx';
 import site, { company } from './config.js';
+import VariantMenu from './VariantMenu.jsx';
 
 export default function Layout() {
   return (
@@ -12,6 +13,7 @@ export default function Layout() {
           <Link to={site.home} className="pq-logo" aria-label={`${company.name}, inicio`}>
             {company.name.toLowerCase()}<span>.</span>
           </Link>
+          <VariantMenu />
           <a className="pq-header__phone" href={telLink(company.phone)}>
             <Phone width={18} height={18} /> <span>{company.phone}</span>
           </a>
