@@ -10,6 +10,16 @@ look, layout and main action, so a prospect can't mistake one for another. A sma
 | **Restaurante** | `/restaurante` | El Nido (casa de comidas) | Reserve a table | None (request goes out by WhatsApp) |
 | **Peluquería** | `/peluqueria` | Plumas (hair salon) | Book an appointment | **Mocked** – see below |
 
+The salon comes in **three designs** with the same business and the same booking logic, so a
+client can compare them and pick the parts they like. A **"Diseño A / B / C"** menu in each
+salon header switches between them:
+
+| Design | URL | Look | Booking |
+|---|---|---|---|
+| **A · App** | `/peluqueria` | Light, white cards, pink accent | Card with four folding steps at the top of the page |
+| **B · Atelier** | `/peluqueria/atelier` | Linen and espresso, big serif type, magazine layout: services menu, team portraits, gallery with lightbox, reviews | Panel sliding in from the right, month calendar, running summary |
+| **C · Estudio** | `/peluqueria/estudio` | Near-black with acid lime, huge condensed type, tilted photos, scrolling ticker, Instagram-style feed | Full-screen, one big question per screen; sticky bar on phones |
+
 ## Getting started
 
 ```bash
@@ -42,6 +52,10 @@ and a WhatsApp link to change the appointment. Hours, prices and a two-line "abo
 after. `/peluqueria/agenda` is the salon's view (demo password: `demo`).
 Nothing about the customer is remembered between visits.
 
+Designs B and C read the same data (`peluqueria/config.js`: services, team, hours, reviews) and
+use the same booking hook (`peluqueria/useBooking.js`) and mock backend, so a booking made in any
+design shows up in the salon's agenda. Their own photos and texts are in their `config.js`.
+
 **The booking backend is simulated** (`templates/peluqueria/mockApi.js`): it invents plausible
 appointments and keeps new ones in memory only, so a reload resets it. For a real client,
 replace the bodies of `listBookings`, `createBooking` and `cancelBooking` with calls to a small
@@ -59,6 +73,9 @@ src/
     fontaneria/     config.js · Layout · Home · BeforeAfter · styles.css
     restaurante/    config.js · Layout · Home · slots.js · styles.css
     peluqueria/     config.js · Layout · Home · Booking · Agenda · mockApi.js · styles.css
+                    useBooking.js (booking logic shared by the 3 designs) · variants.js
+    peluqueria-atelier/   design B: config.js · Layout · Home · BookingDrawer · styles.css
+    peluqueria-estudio/   design C: config.js · Layout · Home · Wizard · styles.css
 ```
 
 Each template has its own header, footer, fonts and stylesheet (scoped under `.t-<name>`) and
@@ -67,7 +84,8 @@ template's `config.js`.**
 
 ## Delivering one template to a client
 
-1. Keep only that template's folder and set `base = ''` in its `config.js`.
+1. Keep only that template's folder and set `base = ''` in its `config.js`. For salon design B or
+   C, also keep `peluqueria/` (shared data, booking logic and agenda) and adjust `variants.js`.
 2. In `src/App.jsx`, mount only that template's routes; remove the others from `src/templates/index.js`.
 3. Build with `VITE_DEMO_SWITCHER=off npm run build` to hide the demo switcher.
 4. Fill in the real company details (name, NIF, address) – they also feed the legal pages –

@@ -22,6 +22,10 @@ export const Tap = (p) => <svg {...base} {...p}><path d="M4 9h9a4 4 0 0 1 4 4v1"
 export const Pipe = (p) => <svg {...base} {...p}><path d="M3 8h8a3 3 0 0 1 3 3v10" /><path d="M3 4h8a7 7 0 0 1 7 7v10" /><path d="M3 3v6M12 21h8" /></svg>;
 export const Wrench = (p) => <svg {...base} {...p}><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z" /></svg>;
 export const Scissors = (p) => <svg {...base} {...p}><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M8.1 8.1L20 20M8.1 15.9L20 4" /></svg>;
+export const Layers = (p) => <svg {...base} {...p}><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5" /></svg>;
+export const ArrowLeft = (p) => <svg {...base} {...p}><path d="M19 12H5M11 6l-6 6 6 6" /></svg>;
+export const Instagram = (p) => <svg {...base} {...p}><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5v.01" /></svg>;
+export const Menu = (p) => <svg {...base} {...p}><path d="M4 7h16M4 12h16M4 17h16" /></svg>;
 export const Leaf = (p) => <svg {...base} {...p}><path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15" /><path d="M5 19l7-7" /></svg>;
 
 export const Star = ({ filled = true, ...p }) => (

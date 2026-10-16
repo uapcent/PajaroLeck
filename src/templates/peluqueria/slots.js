@@ -29,3 +29,17 @@ export function freeSlots(date, duration, bookings, who = 'any', now = null) {
   }
   return slots;
 }
+
+// Free times split into [['Mañana', […]], ['Tarde', […]]], leaving out empty halves.
+export const byPeriod = (slots) =>
+  [['Mañana', slots.filter((s) => s.time < '14:00')], ['Tarde', slots.filter((s) => s.time >= '14:00')]].filter(([, list]) => list.length);
+
+// Services grouped by category, in order of first appearance: [['Cortes', […]], ['Barbería', […]]…]
+export function byCategory(list) {
+  const groups = new Map();
+  for (const s of list) {
+    const key = s.category ?? 'Servicios';
+    groups.set(key, [...(groups.get(key) ?? []), s]);
+  }
+  return [...groups];
+}

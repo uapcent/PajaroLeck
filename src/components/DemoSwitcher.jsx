@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { templates } from '../templates/index.js';
+import useDismiss from '../lib/useDismiss.js';
 import { ChevronDown, Grid } from './Icons.jsx';
 
 // Small floating button (bottom left) to switch between the demos.
@@ -13,18 +14,7 @@ export default function DemoSwitcher() {
   const current = templates.find((t) => t.base && pathname.startsWith(t.base)) ?? templates.find((t) => !t.base);
 
   useEffect(() => setOpen(false), [pathname]);
-  useEffect(() => {
-    if (!open) return;
-    const close = (e) => {
-      if (e.type === 'keydown' ? e.key === 'Escape' : !ref.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener('pointerdown', close);
-    document.addEventListener('keydown', close);
-    return () => {
-      document.removeEventListener('pointerdown', close);
-      document.removeEventListener('keydown', close);
-    };
-  }, [open]);
+  useDismiss(ref, open, () => setOpen(false));
 
   return (
     <div className="demo-switcher" ref={ref}>

@@ -209,8 +209,11 @@ html:has(.t-peluqueria) { scroll-behavior: smooth; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
+  .pq-header__inner { gap: 8px; }
+  .pq-logo { font-size: 26px; }
   .pq-header__phone span { display: none; }
-  .pq-header__phone { width: 42px; height: 42px; justify-content: center; border-radius: 50%; border: 2px solid var(--border); }
+  .pq-header__phone { flex: none; width: 40px; height: 40px; justify-content: center; border-radius: 50%; border: 2px solid var(--border); }
+  .pq-header__cta { white-space: nowrap; padding: 11px 14px; }
   .pq-banner { height: 220px; }
   .pq-banner__text { top: 32px; }
   .pq-booking { margin-top: -90px; padding-bottom: 32px; }
